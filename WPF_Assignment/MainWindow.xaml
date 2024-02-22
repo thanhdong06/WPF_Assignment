@@ -1,0 +1,107 @@
+﻿<Window x:Class="WPF_Assignment.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Assignment"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="650" Width="825">
+    <Grid Background="AliceBlue">
+        <DockPanel VerticalAlignment="Top" Margin="10">
+            <Grid Height="589">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!--StackPanel for Label and TextBox controls-->
+                <StackPanel Background="LightBlue"  Orientation ="Vertical" 
+                            HorizontalAlignment="Left" Width="400" >
+
+                    <Label Name="lb_Title" Foreground="Red" FontWeight="DemiBold" 
+                           FontSize="20" Content="Member Information"  />
+
+                    <Label Name="lb_MemberId" Content="Member Id" FontWeight="Bold" />
+                    <TextBox Name="txt_MemberId" HorizontalAlignment="Stretch" 
+                             Height="25"  
+                    Text="{Binding Path=Id, Mode=TwoWay}"  
+                     DataContext="{Binding ElementName=lvAccounts,    
+                     Path=SelectedItem}" />
+
+                    <Label Name="lb_MemberName" Content="Name" FontWeight="Bold"/>
+                    <TextBox Name="txt_MemberName" HorizontalAlignment="Stretch"
+                             Height="25"  
+                    Text="{Binding Path=Name, Mode=OneWay}"
+                             DataContext="{Binding ElementName=lvAccounts, 
+                             Path=SelectedItem}" />
+
+                    <Label Name="lb_Email" Content="Email" FontWeight="Bold" />
+                    <TextBox Name="txt_Email" HorizontalAlignment="Stretch"
+                             Height="25" 
+                    Text="{Binding Path=Email, Mode=OneWay}"
+                             DataContext="{Binding ElementName=lvAccounts, 
+                             Path=SelectedItem}" />
+
+                    <Label Name="lb_Password" Content="Password" FontWeight="Bold"/>
+                    <TextBox Name="txt_Password" HorizontalAlignment="Stretch"
+                             Height="25"  
+                             Text="{Binding 
+                             Path=Password, Mode=OneWay}"
+                             DataContext="{Binding ElementName=lvAccounts, 
+                             Path=SelectedItem}" />
+
+                    <Label Name="lb_Gender" Content="Gender" FontWeight="Bold"/>
+                    <TextBox Name="txt_Gender" HorizontalAlignment="Stretch"
+                             Height="25" 
+                             Text="{Binding Path=Gender, Mode=OneWay}"
+                             DataContext="{Binding ElementName=lvAccounts, 
+                             Path=SelectedItem}" />
+                    <Label Name="lb_Role" Content="Role" FontWeight="Bold"/>
+                    <TextBox Name="txt_Role" HorizontalAlignment="Stretch"
+                             Height="25" 
+                             Text="{Binding Path=Role, Mode=OneWay}"
+                             DataContext="{Binding ElementName=lvAccounts, 
+                             Path=SelectedItem}" />
+                </StackPanel>
+                <!--StackPanel for Button controls-->
+                <StackPanel Orientation="Horizontal"  
+                            HorizontalAlignment="Left" Margin="0,342,0,0" Grid.RowSpan="2" Width="795">
+                    <Button x:Name="btn_Load" Margin="10"   Width="80" Content="Load" Background="Bisque"
+                            Click="btnLoad_Click"/>
+                    <Button x:Name="btn_Insert" Margin="10" Width="80" Content="Insert" Background="Bisque"
+                        Click="btn_Insert_Click"/>
+                    <Button x:Name="btn_Update" Margin="10" Width="80" Content="Update" Background="Bisque"
+                        Click="btn_Update_Click"/>
+                    <Button x:Name="btn_Delete" Margin="10" Width="80" Content="Delete" Background="Bisque"
+                        Click="btn_Delete_Click"/>
+                </StackPanel>
+
+                <!--ListView control-->
+                <ListView Grid.Row="2" Name="lvAccounts" Width="Auto" Height="Auto" FontWeight="DemiBold" SelectionChanged="lvAccounts_SelectionChanged">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Member ID"  Width="100" 
+                                    DisplayMemberBinding="{Binding Path=Id}"/>
+                            <GridViewColumn Header="Name" Width="150"
+                                    DisplayMemberBinding="{Binding Path=Name}"/>
+                            <GridViewColumn Header="Email"  Width="200" 
+                                    DisplayMemberBinding="{Binding Path=Email}"/>
+                            <GridViewColumn Header="Password" Width="150"
+                                    DisplayMemberBinding="{Binding Path=Password}"/>
+                            <GridViewColumn Header="Gender"  Width="100"                                           
+                                    DisplayMemberBinding="{Binding Path=Gender}"/>
+                            <GridViewColumn Header="Role"  Width="100"                                           
+                                    DisplayMemberBinding="{Binding Path=Role}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <!--Button control-->
+                <Button Grid.Row="3" x:Name="btnClose" Margin="10"                        
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Width="80" Content="Close" Click="btnClose_Click" Background="Bisque"  />
+                <Button Background="Bisque" x:Name="btn_Logout" Content="LogOut" HorizontalAlignment="Left" Margin="693,19,0,0" VerticalAlignment="Top" Height="24" Width="78" Click="btn_Logout_Click"/>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>
